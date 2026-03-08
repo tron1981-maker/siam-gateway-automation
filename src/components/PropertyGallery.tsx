@@ -1,42 +1,46 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import property1 from "@/assets/property-1.jpg";
-import property2 from "@/assets/property-2.jpg";
-import property3 from "@/assets/property-3.jpg";
-
-const properties = [
-  {
-    image: property1,
-    title: "The Residences at Sukhumvit",
-    location: "Sukhumvit Soi 24, Bangkok",
-    price: "฿45,000,000",
-    beds: 3,
-    area: "210 sqm",
-    tag: "Featured",
-  },
-  {
-    image: property2,
-    title: "Oceanfront Villa Natai",
-    location: "Natai Beach, Phuket",
-    price: "฿120,000,000",
-    beds: 5,
-    area: "680 sqm",
-    tag: "Exclusive",
-  },
-  {
-    image: property3,
-    title: "Sky Penthouse Sathorn",
-    location: "Sathorn Road, Bangkok",
-    price: "฿78,000,000",
-    beds: 4,
-    area: "420 sqm",
-    tag: "New Listing",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import PropertyCard from "@/components/PropertyCard";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const PropertyGallery = () => {
   const { t } = useLanguage();
+
+  const { data: properties = [] } = useQuery({
+    queryKey: ["featured-properties"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("properties")
+        .select("*")
+        .eq("status", "available")
+        .eq("featured", true)
+        .order("created_at", { ascending: false })
+        .limit(3);
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  // If no featured properties, get latest 3
+  const { data: fallbackProperties = [] } = useQuery({
+    queryKey: ["latest-properties"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("properties")
+        .select("*")
+        .eq("status", "available")
+        .order("created_at", { ascending: false })
+        .limit(3);
+      if (error) throw error;
+      return data;
+    },
+    enabled: properties.length === 0,
+  });
+
+  const displayProperties = properties.length > 0 ? properties : fallbackProperties;
 
   return (
     <section className="py-24 bg-navy-medium" id="properties">
@@ -56,49 +60,24 @@ const PropertyGallery = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((property, index) => (
-            <motion.div
-              key={property.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group bg-card rounded-lg overflow-hidden shadow-card-luxury border border-border hover:border-gold/30 transition-all duration-500"
-            >
-              <div className="relative overflow-hidden h-64">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 left-4 bg-gold-gradient text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
-                  {property.tag}
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-heading text-xl font-semibold mb-1">
-                  {property.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {property.location}
-                </p>
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-5">
-                  <span>{property.beds} {t.gallery.bedrooms}</span>
-                  <span>{property.area}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gradient-gold font-heading text-xl font-bold">
-                    {property.price}
-                  </span>
-                  <Button variant="heroOutline" size="sm">
-                    {t.gallery.inquire}
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        {displayProperties.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {displayProperties.map((property, index) => (
+              <PropertyCard key={property.id} property={property} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-muted-foreground">
+            <p>{t.properties.noResults}</p>
+          </div>
+        )}
+
+        <div className="text-center mt-12">
+          <Link to="/properties">
+            <Button variant="heroOutline" size="lg">
+              {t.nav.properties} →
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
