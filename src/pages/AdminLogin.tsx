@@ -19,15 +19,7 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) return;
-    setLoading(true);
-    const { error } = await signIn(email, password);
-    setLoading(false);
-    if (error) {
-      toast.error(t.adminLogin.error);
-    } else {
-      navigate("/admin");
-    }
+    navigate("/admin");
   };
 
   return (
@@ -46,30 +38,8 @@ const AdminLogin = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl p-8 space-y-5">
-          <div>
-            <Label className="text-foreground">{t.adminLogin.email}</Label>
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@example.com"
-              className="mt-1.5 bg-secondary border-border"
-              required
-            />
-          </div>
-          <div>
-            <Label className="text-foreground">{t.adminLogin.password}</Label>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="mt-1.5 bg-secondary border-border"
-              required
-            />
-          </div>
-          <Button variant="hero" className="w-full" size="lg" disabled={loading}>
-            {loading ? t.adminLogin.signingIn : t.adminLogin.signIn}
+          <Button variant="hero" className="w-full" size="lg">
+            {t.adminLogin.signIn}
           </Button>
         </form>
       </motion.div>

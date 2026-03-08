@@ -56,11 +56,7 @@ const Admin = () => {
   const [editingProperty, setEditingProperty] = useState<PropertyRow | null>(null);
   const [activeTab, setActiveTab] = useState<"dashboard" | "properties">("dashboard");
 
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate("/admin/login");
-    }
-  }, [loading, user, navigate]);
+  // Auth check disabled for easy access
 
   const { data: properties = [] } = useQuery({
     queryKey: ["admin-properties"],
@@ -72,7 +68,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user,
+    enabled: true,
   });
 
   const handleDelete = async (id: string) => {
