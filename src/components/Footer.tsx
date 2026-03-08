@@ -1,4 +1,8 @@
+import { useLanguage } from "@/i18n/LanguageContext";
+
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-12 bg-background border-t border-border">
       <div className="container mx-auto px-6">
@@ -7,7 +11,7 @@ const Footer = () => {
             Siam Elite <span className="text-gradient-gold">Gateway</span>
           </p>
           <p className="text-sm text-muted-foreground">
-            © 2025 Siam Elite Gateway Co., Ltd. All rights reserved.
+            {t.footer.copyright}
           </p>
         </div>
       </div>

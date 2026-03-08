@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/i18n/LanguageContext";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -35,6 +36,8 @@ const properties = [
 ];
 
 const PropertyGallery = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 bg-navy-medium" id="properties">
       <div className="container mx-auto px-6">
@@ -46,10 +49,10 @@ const PropertyGallery = () => {
           className="text-center mb-16"
         >
           <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3">
-            Curated Collection
+            {t.gallery.subtitle}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
-            Featured Properties
+            {t.gallery.title}
           </h2>
         </motion.div>
 
@@ -82,7 +85,7 @@ const PropertyGallery = () => {
                   {property.location}
                 </p>
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-5">
-                  <span>{property.beds} Bedrooms</span>
+                  <span>{property.beds} {t.gallery.bedrooms}</span>
                   <span>{property.area}</span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -90,7 +93,7 @@ const PropertyGallery = () => {
                     {property.price}
                   </span>
                   <Button variant="heroOutline" size="sm">
-                    Inquire Now
+                    {t.gallery.inquire}
                   </Button>
                 </div>
               </div>

@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const isAdmin = location.pathname === "/admin";
+  const { language, setLanguage, t } = useLanguage();
+
+  const toggleLang = () => setLanguage(language === "en" ? "ko" : "en");
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
@@ -24,13 +28,20 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {!isAdmin && (
             <>
-              <a href="#properties" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Properties</a>
-              <a href="#consultation" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Consultation</a>
+              <a href="#properties" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.properties}</a>
+              <a href="#consultation" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.consultation}</a>
             </>
           )}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Globe size={16} />
+            {language === "en" ? "한국어" : "EN"}
+          </button>
           <Link to={isAdmin ? "/" : "/admin"}>
             <Button variant="heroOutline" size="sm">
-              {isAdmin ? "View Site" : "Admin"}
+              {isAdmin ? t.nav.viewSite : t.nav.admin}
             </Button>
           </Link>
         </div>
@@ -45,13 +56,20 @@ const Navbar = () => {
         <div className="md:hidden bg-card border-t border-border p-4 space-y-3">
           {!isAdmin && (
             <>
-              <a href="#properties" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Properties</a>
-              <a href="#consultation" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Consultation</a>
+              <a href="#properties" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.properties}</a>
+              <a href="#consultation" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.consultation}</a>
             </>
           )}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground"
+          >
+            <Globe size={16} />
+            {language === "en" ? "한국어" : "EN"}
+          </button>
           <Link to={isAdmin ? "/" : "/admin"} onClick={() => setIsOpen(false)}>
             <Button variant="heroOutline" size="sm" className="w-full">
-              {isAdmin ? "View Site" : "Admin"}
+              {isAdmin ? t.nav.viewSite : t.nav.admin}
             </Button>
           </Link>
         </div>
