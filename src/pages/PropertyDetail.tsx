@@ -202,12 +202,12 @@ const PropertyDetail = () => {
                       </div>
                     </div>
                   )}
-                  {property.price_per_sqm && (
+                   {property.price_per_sqm && (
                     <div className="flex items-center gap-3 bg-card border border-border rounded-lg p-4">
                       <Building2 size={18} className="text-gold shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">{t.detail.pricePerSqm}</p>
-                        <p className="font-medium">฿{property.price_per_sqm.toLocaleString()}/sqm</p>
+                        <p className="font-medium">฿{Math.round(property.price_per_sqm / 0.3025).toLocaleString()}/{language === "ko" ? "평" : "py"}</p>
                       </div>
                     </div>
                   )}
