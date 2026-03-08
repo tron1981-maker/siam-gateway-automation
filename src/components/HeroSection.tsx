@@ -31,12 +31,16 @@ const HeroSection = () => {
             {t.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" className="text-base px-10 py-6">
-              {t.hero.viewProperties}
-            </Button>
-            <Button variant="heroOutline" size="lg" className="text-base px-10 py-6">
-              {t.hero.bookConsultation}
-            </Button>
+            <a href="#properties">
+              <Button variant="hero" size="lg" className="text-base px-10 py-6">
+                {t.hero.viewProperties}
+              </Button>
+            </a>
+            <a href="#consultation">
+              <Button variant="heroOutline" size="lg" className="text-base px-10 py-6">
+                {t.hero.bookConsultation}
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>
