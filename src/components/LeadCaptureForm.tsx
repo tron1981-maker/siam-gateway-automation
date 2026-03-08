@@ -10,7 +10,8 @@ import { toast } from "sonner";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const LeadCaptureForm = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -20,6 +21,18 @@ const LeadCaptureForm = () => {
     message: "",
     phone: "",
   });
+
+  useEffect(() => {
+    const propertyName = searchParams.get("property");
+    const propertyPrice = searchParams.get("price");
+    if (propertyName) {
+      const prefill = language === "ko"
+        ? `[${propertyName}] (${propertyPrice || ""}) 매물에 대해 문의드립니다.`
+        : `I'd like to inquire about [${propertyName}] (${propertyPrice || ""}).`;
+      setFormData((prev) => ({ ...prev, message: prefill }));
+      setStep(2);
+    }
+  }, [searchParams, language]);
 
   const steps = t.form.steps;
 
