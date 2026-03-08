@@ -19,15 +19,7 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) return;
-    setLoading(true);
-    const { error } = await signIn(email, password);
-    setLoading(false);
-    if (error) {
-      toast.error(t.adminLogin.error);
-    } else {
-      navigate("/admin");
-    }
+    navigate("/admin");
   };
 
   return (
