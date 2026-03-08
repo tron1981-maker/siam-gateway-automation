@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bangkok.jpg";
 
 const HeroSection = () => {
