@@ -198,7 +198,7 @@ const PropertyDetail = () => {
                       <Maximize size={18} className="text-gold shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">{t.detail.landArea}</p>
-                        <p className="font-medium">{property.land_area_sqm} sqm</p>
+                        <p className="font-medium">{(property.land_area_sqm * 0.3025).toFixed(1)}{language === "ko" ? "평" : " py"}</p>
                       </div>
                     </div>
                   )}
