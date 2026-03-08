@@ -68,7 +68,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user,
+    enabled: true,
   });
 
   const handleDelete = async (id: string) => {
