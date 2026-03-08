@@ -155,7 +155,7 @@ const PropertyDetail = () => {
                 {[
                   { icon: Bed, label: t.detail.bedrooms, value: property.bedrooms },
                   { icon: Bath, label: t.detail.bathrooms, value: property.bathrooms },
-                  { icon: Maximize, label: t.detail.area, value: `${property.area_sqm} sqm` },
+                  { icon: Maximize, label: t.detail.area, value: `${(property.area_sqm * 0.3025).toFixed(1)}${language === "ko" ? "평" : " py"}` },
                   { icon: Building2, label: t.detail.type, value: typeLabel[property.property_type] || property.property_type },
                 ].map((spec) => (
                   <div key={spec.label} className="bg-card border border-border rounded-lg p-4 text-center">
@@ -181,7 +181,8 @@ const PropertyDetail = () => {
                   {[
                     { icon: Shield, label: t.detail.ownership, value: ownershipLabel[property.ownership_type] },
                     { icon: Sofa, label: t.detail.furnishing, value: property.furnishing ? furnishingLabel[property.furnishing] : "-" },
-                    { icon: Layers, label: t.detail.floor, value: property.floor_number ? `${property.floor_number}/${property.total_floors || "?"}` : "-" },
+                    { icon: Layers, label: t.detail.currentFloor, value: property.floor_number ? `${property.floor_number}${language === "ko" ? "층" : "F"}` : "-" },
+                    { icon: Building2, label: t.detail.totalFloors, value: property.total_floors ? `${property.total_floors}${language === "ko" ? "층" : "F"}` : "-" },
                     { icon: Calendar, label: t.detail.yearBuilt, value: property.year_built || "-" },
                   ].map((d) => (
                     <div key={d.label} className="flex items-center gap-3 bg-card border border-border rounded-lg p-4">
@@ -197,16 +198,16 @@ const PropertyDetail = () => {
                       <Maximize size={18} className="text-gold shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">{t.detail.landArea}</p>
-                        <p className="font-medium">{property.land_area_sqm} sqm</p>
+                        <p className="font-medium">{(property.land_area_sqm * 0.3025).toFixed(1)}{language === "ko" ? "평" : " py"}</p>
                       </div>
                     </div>
                   )}
-                  {property.price_per_sqm && (
+                   {property.price_per_sqm && (
                     <div className="flex items-center gap-3 bg-card border border-border rounded-lg p-4">
                       <Building2 size={18} className="text-gold shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">{t.detail.pricePerSqm}</p>
-                        <p className="font-medium">฿{property.price_per_sqm.toLocaleString()}/sqm</p>
+                        <p className="font-medium">฿{Math.round(property.price_per_sqm / 0.3025).toLocaleString()}/{language === "ko" ? "평" : "py"}</p>
                       </div>
                     </div>
                   )}
