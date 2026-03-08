@@ -1,0 +1,21 @@
+
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800','https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'] WHERE id = 'd30acc71-c10e-4994-9bae-a7bcab376893';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800'] WHERE id = '2fb1bd75-fc17-484f-9c68-3cf76fe3d8ef';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800','https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800'] WHERE id = '3ad4461b-33ec-4d57-b33e-4e7993f9e58e';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800'] WHERE id = '7b36ced5-3e47-4df5-9bfb-1d6d4510871e';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800','https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800'] WHERE id = '0b65d16a-8bdf-4515-a37b-2bec50fe364a';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800','https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800'] WHERE id = '831d5094-adc8-47cb-ab57-322f15eb12b7';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800'] WHERE id = 'c28c40bc-2b17-40aa-8b79-1303501a3054';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800'] WHERE id = 'e936c4d6-2742-4d1b-9c5c-3e17e35bf480';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800'] WHERE id = 'e0110808-3692-4acd-8fea-7ef10776c389';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800'] WHERE id = 'ed06d14e-2077-4fba-9549-003373ee04b7';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800'] WHERE id = '3405c003-462c-4e37-9b2f-f24b422a43b7';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800'] WHERE id = 'be3a959d-2139-426b-82b9-4074e37b7a7e';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800'] WHERE id = '919add6f-829b-401e-937e-bb0ce120f490';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800','https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800'] WHERE id = 'a5fd078c-dc89-4696-bc80-8b117645b73f';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800','https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'] WHERE id = 'c3a9cd96-0402-477c-a060-900198c26390';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800'] WHERE id = 'e34cbebe-ca7e-4484-b72e-815bb7e65e5f';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800'] WHERE id = '9cb8e1c2-046d-4b75-95be-94c743900aa0';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800','https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800'] WHERE id = '789d9314-d127-4e6c-b5fe-d2856d8c9d0b';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800'] WHERE id = '59f52fd2-5dd1-4476-8bf9-3e01d22e50fa';
+UPDATE properties SET images = ARRAY['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800','https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800'] WHERE id = '2685bdbc-00e5-437d-aa4c-55e98b4a0859';
