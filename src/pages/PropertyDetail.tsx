@@ -155,7 +155,7 @@ const PropertyDetail = () => {
                 {[
                   { icon: Bed, label: t.detail.bedrooms, value: property.bedrooms },
                   { icon: Bath, label: t.detail.bathrooms, value: property.bathrooms },
-                  { icon: Maximize, label: t.detail.area, value: `${property.area_sqm} sqm` },
+                  { icon: Maximize, label: t.detail.area, value: `${(property.area_sqm * 0.3025).toFixed(1)}${language === "ko" ? "평" : " py"}` },
                   { icon: Building2, label: t.detail.type, value: typeLabel[property.property_type] || property.property_type },
                 ].map((spec) => (
                   <div key={spec.label} className="bg-card border border-border rounded-lg p-4 text-center">
