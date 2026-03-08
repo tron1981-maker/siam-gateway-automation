@@ -242,7 +242,7 @@ const PropertyDetail = () => {
                   )}
                 </div>
 
-                <a href="/#consultation">
+                <a href={`/?property=${encodeURIComponent(title)}&price=${encodeURIComponent(formatPrice(property.price))}#consultation`}>
                   <Button variant="hero" className="w-full" size="lg">
                     {t.detail.inquireNow}
                   </Button>
