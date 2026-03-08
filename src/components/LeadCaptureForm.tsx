@@ -6,10 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-
-const steps = ["Personal Info", "Investment Details", "Contact"];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const LeadCaptureForm = () => {
+  const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -20,6 +20,8 @@ const LeadCaptureForm = () => {
     phone: "",
   });
 
+  const steps = t.form.steps;
+
   const handleNext = () => {
     if (step < steps.length - 1) setStep(step + 1);
   };
@@ -29,7 +31,7 @@ const LeadCaptureForm = () => {
   };
 
   const handleSubmit = () => {
-    toast.success("Thank you! Our team will contact you within 24 hours.");
+    toast.success(t.form.successMessage);
     setStep(0);
     setFormData({ name: "", email: "", budget: "", propertyType: "", message: "", phone: "" });
   };
@@ -45,10 +47,10 @@ const LeadCaptureForm = () => {
           className="text-center mb-12"
         >
           <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3">
-            Begin Your Journey
+            {t.form.subtitle}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
-            Private Consultation
+            {t.form.title}
           </h2>
         </motion.div>
 
@@ -61,7 +63,7 @@ const LeadCaptureForm = () => {
           {/* Progress */}
           <div className="flex items-center justify-between mb-8">
             {steps.map((label, i) => (
-              <div key={label} className="flex items-center">
+              <div key={i} className="flex items-center">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${
                     i <= step
@@ -93,19 +95,19 @@ const LeadCaptureForm = () => {
               {step === 0 && (
                 <>
                   <div>
-                    <Label className="text-foreground">Full Name</Label>
+                    <Label className="text-foreground">{t.form.fullName}</Label>
                     <Input
-                      placeholder="John Smith"
+                      placeholder={t.form.namePlaceholder}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="mt-1.5 bg-secondary border-border"
                     />
                   </div>
                   <div>
-                    <Label className="text-foreground">Email Address</Label>
+                    <Label className="text-foreground">{t.form.email}</Label>
                     <Input
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder={t.form.emailPlaceholder}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="mt-1.5 bg-secondary border-border"
@@ -117,13 +119,13 @@ const LeadCaptureForm = () => {
               {step === 1 && (
                 <>
                   <div>
-                    <Label className="text-foreground">Budget Range (THB)</Label>
+                    <Label className="text-foreground">{t.form.budget}</Label>
                     <Select
                       value={formData.budget}
                       onValueChange={(value) => setFormData({ ...formData, budget: value })}
                     >
                       <SelectTrigger className="mt-1.5 bg-secondary border-border">
-                        <SelectValue placeholder="Select budget" />
+                        <SelectValue placeholder={t.form.budgetPlaceholder} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="10-30m">฿10M – ฿30M</SelectItem>
@@ -134,19 +136,19 @@ const LeadCaptureForm = () => {
                     </Select>
                   </div>
                   <div>
-                    <Label className="text-foreground">Property Interest</Label>
+                    <Label className="text-foreground">{t.form.propertyInterest}</Label>
                     <Select
                       value={formData.propertyType}
                       onValueChange={(value) => setFormData({ ...formData, propertyType: value })}
                     >
                       <SelectTrigger className="mt-1.5 bg-secondary border-border">
-                        <SelectValue placeholder="Select property type" />
+                        <SelectValue placeholder={t.form.propertyPlaceholder} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="condo">Luxury Condominium</SelectItem>
-                        <SelectItem value="villa">Beachfront Villa</SelectItem>
-                        <SelectItem value="penthouse">Penthouse</SelectItem>
-                        <SelectItem value="mixed">Mixed / Portfolio</SelectItem>
+                        <SelectItem value="condo">{t.form.propertyTypes.condo}</SelectItem>
+                        <SelectItem value="villa">{t.form.propertyTypes.villa}</SelectItem>
+                        <SelectItem value="penthouse">{t.form.propertyTypes.penthouse}</SelectItem>
+                        <SelectItem value="mixed">{t.form.propertyTypes.mixed}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -156,18 +158,18 @@ const LeadCaptureForm = () => {
               {step === 2 && (
                 <>
                   <div>
-                    <Label className="text-foreground">Phone / WhatsApp</Label>
+                    <Label className="text-foreground">{t.form.phone}</Label>
                     <Input
-                      placeholder="+66 XX XXX XXXX"
+                      placeholder={t.form.phonePlaceholder}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="mt-1.5 bg-secondary border-border"
                     />
                   </div>
                   <div>
-                    <Label className="text-foreground">Additional Notes</Label>
+                    <Label className="text-foreground">{t.form.notes}</Label>
                     <Textarea
-                      placeholder="Tell us about your ideal property or any specific requirements..."
+                      placeholder={t.form.notesPlaceholder}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="mt-1.5 bg-secondary border-border min-h-[100px]"
@@ -185,15 +187,15 @@ const LeadCaptureForm = () => {
               disabled={step === 0}
               className="text-muted-foreground"
             >
-              Back
+              {t.form.back}
             </Button>
             {step < steps.length - 1 ? (
               <Button variant="hero" onClick={handleNext}>
-                Continue
+                {t.form.continue}
               </Button>
             ) : (
               <Button variant="hero" onClick={handleSubmit}>
-                Submit Inquiry
+                {t.form.submit}
               </Button>
             )}
           </div>

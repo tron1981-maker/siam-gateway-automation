@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/i18n/LanguageContext";
 import heroBg from "@/assets/hero-bangkok.jpg";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -18,22 +21,21 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <p className="text-gold-light font-body text-sm tracking-[0.3em] uppercase mb-4">
-            Premium Real Estate & Visa Concierge
+            {t.hero.subtitle}
           </p>
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
-            Your Premier Gateway to{" "}
-            <span className="text-gradient-gold">Thai Luxury Living</span>
+            {t.hero.titleStart}{" "}
+            <span className="text-gradient-gold">{t.hero.titleHighlight}</span>
           </h1>
           <p className="font-body text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10">
-            Exclusive properties in Bangkok and Phuket, paired with Elite Visa services 
-            for discerning investors worldwide.
+            {t.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" className="text-base px-10 py-6">
-              View Properties
+              {t.hero.viewProperties}
             </Button>
             <Button variant="heroOutline" size="lg" className="text-base px-10 py-6">
-              Book Consultation
+              {t.hero.bookConsultation}
             </Button>
           </div>
         </motion.div>
