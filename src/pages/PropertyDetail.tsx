@@ -181,7 +181,8 @@ const PropertyDetail = () => {
                   {[
                     { icon: Shield, label: t.detail.ownership, value: ownershipLabel[property.ownership_type] },
                     { icon: Sofa, label: t.detail.furnishing, value: property.furnishing ? furnishingLabel[property.furnishing] : "-" },
-                    { icon: Layers, label: t.detail.floor, value: property.floor_number ? `${property.floor_number}/${property.total_floors || "?"}` : "-" },
+                    { icon: Layers, label: t.detail.currentFloor, value: property.floor_number ? `${property.floor_number}${language === "ko" ? "층" : "F"}` : "-" },
+                    { icon: Building2, label: t.detail.totalFloors, value: property.total_floors ? `${property.total_floors}${language === "ko" ? "층" : "F"}` : "-" },
                     { icon: Calendar, label: t.detail.yearBuilt, value: property.year_built || "-" },
                   ].map((d) => (
                     <div key={d.label} className="flex items-center gap-3 bg-card border border-border rounded-lg p-4">
