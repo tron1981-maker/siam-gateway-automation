@@ -7,7 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const isAdmin = location.pathname === "/admin";
+  const isAdmin = location.pathname.startsWith("/admin");
   const { language, setLanguage, t } = useLanguage();
 
   const toggleLang = () => setLanguage(language === "en" ? "ko" : "en");
@@ -28,14 +28,11 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {!isAdmin && (
             <>
-              <a href="#properties" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.properties}</a>
-              <a href="#consultation" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.consultation}</a>
+              <Link to="/properties" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.properties}</Link>
+              <a href="/#consultation" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t.nav.consultation}</a>
             </>
           )}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <button onClick={toggleLang} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <Globe size={16} />
             {language === "en" ? "한국어" : "EN"}
           </button>
@@ -56,14 +53,11 @@ const Navbar = () => {
         <div className="md:hidden bg-card border-t border-border p-4 space-y-3">
           {!isAdmin && (
             <>
-              <a href="#properties" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.properties}</a>
-              <a href="#consultation" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.consultation}</a>
+              <Link to="/properties" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.properties}</Link>
+              <a href="/#consultation" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>{t.nav.consultation}</a>
             </>
           )}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground"
-          >
+          <button onClick={toggleLang} className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <Globe size={16} />
             {language === "en" ? "한국어" : "EN"}
           </button>
