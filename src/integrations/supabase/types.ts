@@ -14,7 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      properties: {
+        Row: {
+          address: string | null
+          amenities: string[] | null
+          area_sqm: number
+          bathrooms: number
+          bedrooms: number
+          created_at: string
+          description: string | null
+          description_ko: string | null
+          district: string | null
+          featured: boolean | null
+          floor_number: number | null
+          furnishing: Database["public"]["Enums"]["furnishing_type"] | null
+          id: string
+          images: string[] | null
+          land_area_sqm: number | null
+          latitude: number | null
+          listing_type: Database["public"]["Enums"]["listing_type"]
+          longitude: number | null
+          nearby_bts: string | null
+          nearby_facilities: string[] | null
+          ownership_type: Database["public"]["Enums"]["ownership_type"]
+          price: number
+          price_per_sqm: number | null
+          property_type: Database["public"]["Enums"]["property_type"]
+          province: string
+          status: Database["public"]["Enums"]["property_status"]
+          tag: string | null
+          title: string
+          title_ko: string | null
+          total_floors: number | null
+          updated_at: string
+          year_built: number | null
+        }
+        Insert: {
+          address?: string | null
+          amenities?: string[] | null
+          area_sqm: number
+          bathrooms?: number
+          bedrooms?: number
+          created_at?: string
+          description?: string | null
+          description_ko?: string | null
+          district?: string | null
+          featured?: boolean | null
+          floor_number?: number | null
+          furnishing?: Database["public"]["Enums"]["furnishing_type"] | null
+          id?: string
+          images?: string[] | null
+          land_area_sqm?: number | null
+          latitude?: number | null
+          listing_type?: Database["public"]["Enums"]["listing_type"]
+          longitude?: number | null
+          nearby_bts?: string | null
+          nearby_facilities?: string[] | null
+          ownership_type?: Database["public"]["Enums"]["ownership_type"]
+          price: number
+          price_per_sqm?: number | null
+          property_type?: Database["public"]["Enums"]["property_type"]
+          province?: string
+          status?: Database["public"]["Enums"]["property_status"]
+          tag?: string | null
+          title: string
+          title_ko?: string | null
+          total_floors?: number | null
+          updated_at?: string
+          year_built?: number | null
+        }
+        Update: {
+          address?: string | null
+          amenities?: string[] | null
+          area_sqm?: number
+          bathrooms?: number
+          bedrooms?: number
+          created_at?: string
+          description?: string | null
+          description_ko?: string | null
+          district?: string | null
+          featured?: boolean | null
+          floor_number?: number | null
+          furnishing?: Database["public"]["Enums"]["furnishing_type"] | null
+          id?: string
+          images?: string[] | null
+          land_area_sqm?: number | null
+          latitude?: number | null
+          listing_type?: Database["public"]["Enums"]["listing_type"]
+          longitude?: number | null
+          nearby_bts?: string | null
+          nearby_facilities?: string[] | null
+          ownership_type?: Database["public"]["Enums"]["ownership_type"]
+          price?: number
+          price_per_sqm?: number | null
+          property_type?: Database["public"]["Enums"]["property_type"]
+          province?: string
+          status?: Database["public"]["Enums"]["property_status"]
+          tag?: string | null
+          title?: string
+          title_ko?: string | null
+          total_floors?: number | null
+          updated_at?: string
+          year_built?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +127,17 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      furnishing_type: "furnished" | "unfurnished" | "partially_furnished"
+      listing_type: "sale" | "rent"
+      ownership_type: "freehold" | "leasehold"
+      property_status: "available" | "sold" | "reserved" | "off_market"
+      property_type:
+        | "condo"
+        | "villa"
+        | "penthouse"
+        | "house"
+        | "townhouse"
+        | "land"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +264,19 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      furnishing_type: ["furnished", "unfurnished", "partially_furnished"],
+      listing_type: ["sale", "rent"],
+      ownership_type: ["freehold", "leasehold"],
+      property_status: ["available", "sold", "reserved", "off_market"],
+      property_type: [
+        "condo",
+        "villa",
+        "penthouse",
+        "house",
+        "townhouse",
+        "land",
+      ],
+    },
   },
 } as const
