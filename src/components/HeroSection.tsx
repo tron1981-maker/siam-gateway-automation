@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bangkok.jpg";
 
 const HeroSection = () => {
@@ -31,11 +32,11 @@ const HeroSection = () => {
             {t.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#properties">
+            <Link to="/properties">
               <Button variant="hero" size="lg" className="text-base px-10 py-6">
                 {t.hero.viewProperties}
               </Button>
-            </a>
+            </Link>
             <a href="#consultation">
               <Button variant="heroOutline" size="lg" className="text-base px-10 py-6">
                 {t.hero.bookConsultation}
